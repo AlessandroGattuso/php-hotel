@@ -9,6 +9,14 @@
   background-color: white;
 }
 
+.green-text {
+  color: rgb(4, 170, 108);
+}
+
+.red-text {
+  color: rgb(219, 8, 64);
+}
+
 select {
   max-width: 100px;
 }
