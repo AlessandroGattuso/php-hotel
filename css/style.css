@@ -17,6 +17,10 @@
   color: rgb(219, 8, 64);
 }
 
+.card span {
+  font-weight: 300;
+}
+
 select {
   max-width: 100px;
 }
