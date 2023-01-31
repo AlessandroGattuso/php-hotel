@@ -74,20 +74,20 @@
   <link rel="stylesheet" href="./css/style.css">
   <title>php-hotel</title>
   <style>
-      div form .green-check:focus {
+      .green-check:focus {
         border-color: rgba(0, 0, 0, 0.25);
         outline: 0;
         box-shadow: 0 0 0 0.25rem rgb(53 225 161 / 25%);
         background-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='3' fill='rgb(53,225,161)'/></svg>");
       }
 
-      div form .green-check:checked {
+      .green-check:checked {
         background-color: rgb(53, 225, 161);
         border-color: rgb(53, 225, 161);
         border: none;
         background-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='3' fill='rgba(255,255,255)'/></svg>");
       }
-      div form .search:focus {
+      .green-box-shadow:focus {
         box-shadow: 0 0 0 0.25rem rgb(53 225 161 / 25%);
         border-color: rgb(53 225 161);
       }
@@ -108,13 +108,13 @@
                 <label class="me-5 form-check-label fw-semibold" for="flexSwitchCheckDefault">Parking</label>
                 <input name="parking" class="form-check-input green-check" type="checkbox" role="switch" id="flexSwitchCheckDefault">
               </div>
-              <select name="vote" class="form-select fw-semibold" aria-label="Default select example">
+              <select name="vote" class="form-select fw-semibold green-box-shadow" aria-label="Default select example">
                   <option selected>Voto</option>
                   <?php for($i = 1; $i <= 5; ++$i){ ?>
                             <option value="<?php echo $i ?>" class="fw-semibold"><?php echo $i ?></option>
                   <?php } ?>           
               </select>
-              <input name="search" class="form-control me-2 search" type="search" placeholder="Search" aria-label="Search">
+              <input name="search" class="form-control me-2 green-box-shadow" type="search" placeholder="Search" aria-label="Search">
               <button class="btn btn-outline-dark" type="submit">Search</button>
           </form>
         </div>
