@@ -106,15 +106,20 @@
             <form  action="./index.php" method="GET" class="d-flex gap-4" role="search">
               <div class="d-flex align-items-center form-check form-switch">
                 <label class="me-5 form-check-label fw-semibold" for="flexSwitchCheckDefault">Parking</label>
-                <input name="parking" class="form-check-input green-check" type="checkbox" role="switch" id="flexSwitchCheckDefault">
+                <input name="parking" <?php echo (isset($_GET['parking'])) ? 'checked' : '';?> class="form-check-input green-check" type="checkbox" role="switch" id="flexSwitchCheckDefault">
               </div>
               <select name="vote" class="form-select fw-semibold green-box-shadow" aria-label="Default select example">
-                  <option selected>Voto</option>
+                  <option>Voto</option>
                   <?php for($i = 1; $i <= 5; ++$i){ ?>
-                            <option value="<?php echo $i ?>" class="fw-semibold"><?php echo $i ?></option>
-                  <?php } ?>           
+                            <option value="<?php echo $i ?>"  <?php echo (isset($_GET['vote']) && $_GET['vote'] == $i) ? 'selected' : '';?> class="fw-semibold"><?php echo $i ?></option>                         
+                  <?php } ?>                   
               </select>
-              <input name="search" class="form-control me-2 green-box-shadow" type="search" placeholder="Search" aria-label="Search">
+              <?php for($i = 1; $i <= 5; ++$i){
+                  if(isset($_GET['vote']) && $_GET['vote'] == $i){
+                    echo 'ok';
+                  }
+              }?>   
+              <input name="search" class="form-control me-2 green-box-shadow" type="search" placeholder="Search" aria-label="Search" value="<?php echo isset($_GET['search']) ? $_GET['search'] : ''; ?>">
               <button class="btn btn-outline-dark" type="submit">Search</button>
           </form>
         </div>
