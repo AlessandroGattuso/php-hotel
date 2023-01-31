@@ -36,22 +36,18 @@
             'distance_to_center' => 50
         ],
   ];
-  // echo "<pre>";
-  // var_dump($_GET);
-  // echo "</pre>";
+
   $hotelsToShow = $hotels;
 
   if(isset($_GET['search'])){
-    foreach($hotelsToShow as $index => $hotel){
-      if(!preg_match('/'.$_GET['search'].'/i', $hotel['name'])){
-        unset($hotelsToShow[$index]);
+    if($_GET['search'] != ''){
+      foreach($hotelsToShow as $index => $hotel){
+        if(!preg_match('/'.$_GET['search'].'/i', $hotel['name'])){
+          unset($hotelsToShow[$index]);
+        }
       }
     }
   }
-
-  // echo "<pre>";
-  // var_dump($hotelsToShow);
-  // echo "</pre>";
 
   if(isset($_GET['vote'])){
     if($_GET['vote'] != 'Voto'){
@@ -64,7 +60,7 @@
   
   if(isset($_GET['parking'])){
     foreach($hotelsToShow as $index => $hotel){
-      if($hotel['parking'] == false)
+      if(!$hotel['parking'])
           unset($hotelsToShow[$index]);
     }
   }
@@ -81,26 +77,41 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
   <link rel="stylesheet" href="./css/style.css">
   <title>php-hotel</title>
+  <style>
+      .green-check:focus {
+        border-color: rgba(0, 0, 0, 0.25);
+        outline: 0;
+        box-shadow: 0 0 0 0 rgba(0, 0, 0, 0);
+        background-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='3' fill='rgb(53,225,161)'/></svg>");
+      }
+
+      .green-check:checked {
+        background-color: rgb(53, 225, 161);
+        border-color: rgb(53, 225, 161);
+        border: none;
+        background-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='3' fill='rgba(255,255,255)'/></svg>");
+      }
+  </style>
 </head>
 <body>
     <nav class="navbar navbar-expand-lg">
-      <div class="container py-1">
+      <div class="container py-3">
         <a class="d-flex align-items-center navbar-brand" href="#">
           <img src="https://www.tripadvisor.it/favicon.ico" alt="Bootstrap" width="30" height="30">
         </a>
         <a class="navbar-brand" href="#">
           <h3 class="m-0 fw-bold">Booladvisor</h3>
         </a>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <div class="collapse navbar-collapse d-flex justify-content-end" id="navbarSupportedContent">
             <form  action="./index.php" method="GET" class="d-flex gap-4" role="search">
               <div class="d-flex align-items-center form-check form-switch">
                 <label class="me-5 form-check-label fw-semibold" for="flexSwitchCheckDefault">Parking</label>
-                <input name="parking" class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault">
+                <input name="parking" class="form-check-input green-check" type="checkbox" role="switch" id="flexSwitchCheckDefault">
               </div>
               <select name="vote" class="form-select fw-semibold" aria-label="Default select example">
                   <option selected>Voto</option>
                   <?php for($i = 1; $i <= 5; ++$i){ ?>
-                        <option value="<?php echo $i ?>" class="fw-semibold"><?php echo $i ?></option>
+                            <option value="<?php echo $i ?>" class="fw-semibold"><?php echo $i ?></option>
                   <?php } ?>           
               </select>
               <input name="search" class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
