@@ -39,22 +39,18 @@
 
   $hotelsToShow = $hotels;
 
-  if(isset($_GET['search'])){
-    if($_GET['search'] != ''){
-      foreach($hotelsToShow as $index => $hotel){
-        if(!preg_match('/'.$_GET['search'].'/i', $hotel['name'])){
-          unset($hotelsToShow[$index]);
-        }
+  if(isset($_GET['search']) && $_GET['search'] != ''){
+    foreach($hotelsToShow as $index => $hotel){
+      if(!preg_match('/'.$_GET['search'].'/i', $hotel['name'])){
+        unset($hotelsToShow[$index]);
       }
     }
   }
 
-  if(isset($_GET['vote'])){
-    if($_GET['vote'] != 'Voto'){
-      foreach($hotelsToShow as $index => $hotel){
-        if($hotel['vote'] < $_GET['vote'])
-          unset($hotelsToShow[$index]);
-      }
+  if(isset($_GET['vote']) && $_GET['vote'] != 'Voto'){
+    foreach($hotelsToShow as $index => $hotel){
+      if($hotel['vote'] < $_GET['vote'])
+        unset($hotelsToShow[$index]);
     }
   }
   
